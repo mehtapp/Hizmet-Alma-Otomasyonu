@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProcProjeDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ProcProjeDbEntities1" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="hizmet_Select" ReturnType="Collection(ProcProjeDbModel.hizmet_Select_Result)" />
+    <FunctionImport Name="Hizmetler_add">
+      <Parameter Name="hizmetAdi" Mode="In" Type="String" />
+      <Parameter Name="hizmetTanimi" Mode="In" Type="String" />
+      <Parameter Name="hizmetFiyat" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Hizmetler_Del">
+      <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Hizmetler_up">
+      <Parameter Name="hizmetNo" Mode="In" Type="Int32" />
+      <Parameter Name="hizmetAdi" Mode="In" Type="String" />
+      <Parameter Name="hizmetTanimi" Mode="In" Type="String" />
+      <Parameter Name="hizmetFiyat" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="hizmetozellik_add">
+      <Parameter Name="OzellikAciklama" Mode="In" Type="String" />
+      <Parameter Name="ozelEkstra" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="HizmetOzellik_del">
+      <Parameter Name="ozellikNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="HizmetOzellik_up">
+      <Parameter Name="ozellikNo" Mode="In" Type="Int32" />
+      <Parameter Name="OzellikAciklama" Mode="In" Type="String" />
+      <Parameter Name="ozelEkstra" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Mus_Select" ReturnType="Collection(ProcProjeDbModel.Mus_Select_Result)" />
+    <FunctionImport Name="Musteri_add">
+      <Parameter Name="AdSoyad" Mode="In" Type="String" />
+      <Parameter Name="Cinsiyet" Mode="In" Type="String" />
+      <Parameter Name="Telefon" Mode="In" Type="String" />
+      <Parameter Name="TcNo" Mode="In" Type="String" />
+      <Parameter Name="Adres" Mode="In" Type="String" />
+      <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+      <Parameter Name="Mail" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Musteriler_del">
+      <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Musteriler_up">
+      <Parameter Name="MusteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="AdSoyad" Mode="In" Type="String" />
+      <Parameter Name="Cinsiyet" Mode="In" Type="String" />
+      <Parameter Name="Telefon" Mode="In" Type="String" />
+      <Parameter Name="TcNo" Mode="In" Type="String" />
+      <Parameter Name="Adres" Mode="In" Type="String" />
+      <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+      <Parameter Name="Mail" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Siparisler_add">
+      <Parameter Name="siparisAdi" Mode="In" Type="String" />
+      <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="adres" Mode="In" Type="String" />
+      <Parameter Name="aciklama" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Siparisler_del">
+      <Parameter Name="siparisNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Siparisler_up">
+      <Parameter Name="siparisNo" Mode="In" Type="Int32" />
+      <Parameter Name="siparisAdi" Mode="In" Type="String" />
+      <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="adres" Mode="In" Type="String" />
+      <Parameter Name="aciklama" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProcProjeDbModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProcProjeDbModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Hizmetlers" EntityType="ProcProjeDbModel.Hizmetler" />
+    <EntitySet Name="Musterilers" EntityType="ProcProjeDbModel.Musteriler" />
+    <EntitySet Name="Taleps" EntityType="ProcProjeDbModel.Talep" />
+    <AssociationSet Name="FK_Talep_Hizmetler" Association="ProcProjeDbModel.FK_Talep_Hizmetler">
+      <End Role="Hizmetler" EntitySet="Hizmetlers" />
+      <End Role="Talep" EntitySet="Taleps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Talep_Musteriler" Association="ProcProjeDbModel.FK_Talep_Musteriler">
+      <End Role="Musteriler" EntitySet="Musterilers" />
+      <End Role="Talep" EntitySet="Taleps" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="ProcProjeDbModel.sysdiagram" />
+  </EntityContainer>
+  <ComplexType Name="hizmet_Select_Result">
+    <Property Type="Int32" Name="HizmetNo" Nullable="false" />
+    <Property Type="String" Name="HizmetAdi" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HizmetTanimi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="HizmetFiyat" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Mus_Select_Result">
+    <Property Type="Int32" Name="MusteriNo" Nullable="false" />
+    <Property Type="String" Name="AdSoyad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Cinsiyet" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Telefon" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TcNo" Nullable="true" MaxLength="11" />
+    <Property Type="String" Name="Adres" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="HizmetNo" Nullable="true" />
+    <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Hizmetler">
+    <Key>
+      <PropertyRef Name="HizmetNo" />
+    </Key>
+    <Property Name="HizmetNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HizmetAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HizmetTanimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HizmetFiyat" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Musteriler">
+    <Key>
+      <PropertyRef Name="MusteriNo" />
+    </Key>
+    <Property Name="MusteriNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Talep">
+    <Key>
+      <PropertyRef Name="TalepNo" />
+    </Key>
+    <Property Name="TalepNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HizmetNo" Type="Int32" />
+    <Property Name="MusteriNo" Type="Int32" />
+    <Property Name="MusteriNot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Talep_Hizmetler">
+    <End Type="ProcProjeDbModel.Hizmetler" Role="Hizmetler" Multiplicity="0..1" />
+    <End Type="ProcProjeDbModel.Talep" Role="Talep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hizmetler">
+        <PropertyRef Name="HizmetNo" />
+      </Principal>
+      <Dependent Role="Talep">
+        <PropertyRef Name="HizmetNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Talep_Musteriler">
+    <End Type="ProcProjeDbModel.Musteriler" Role="Musteriler" Multiplicity="0..1" />
+    <End Type="ProcProjeDbModel.Talep" Role="Talep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteriler">
+        <PropertyRef Name="MusteriNo" />
+      </Principal>
+      <Dependent Role="Talep">
+        <PropertyRef Name="MusteriNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProcProjeDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Calisans">
+    <Key>
+      <PropertyRef Name="CalisanId" />
+    </Key>
+    <Property Name="CalisanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KulAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Hizmetlers">
+    <Key>
+      <PropertyRef Name="HizmetNo" />
+    </Key>
+    <Property Name="HizmetNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HizmetAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HizmetTanimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HizmetFiyat" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Musterilers">
+    <Key>
+      <PropertyRef Name="MusteriNo" />
+    </Key>
+    <Property Name="MusteriNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Taleps">
+    <Key>
+      <PropertyRef Name="TalepNo" />
+    </Key>
+    <Property Name="TalepNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HizmetNo" Type="Int32" />
+    <Property Name="MusteriNo" Type="Int32" />
+    <Property Name="MusteriNot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TalepDurumu" Type="Boolean" />
+    <NavigationProperty Name="Hizmetlers" Relationship="Self.FK_Talep_Hizmetler" FromRole="Taleps" ToRole="Hizmetlers" />
+    <NavigationProperty Name="Musterilers" Relationship="Self.FK_Talep_Musteriler" FromRole="Taleps" ToRole="Musterilers" />
+  </EntityType>
+  <Association Name="FK_Talep_Hizmetler">
+    <End Role="Hizmetlers" Type="Self.Hizmetlers" Multiplicity="0..1" />
+    <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hizmetlers">
+        <PropertyRef Name="HizmetNo" />
+      </Principal>
+      <Dependent Role="Taleps">
+        <PropertyRef Name="HizmetNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Talep_Musteriler">
+    <End Role="Musterilers" Type="Self.Musterilers" Multiplicity="0..1" />
+    <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musterilers">
+        <PropertyRef Name="MusteriNo" />
+      </Principal>
+      <Dependent Role="Taleps">
+        <PropertyRef Name="MusteriNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProcProjeDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Calisans" EntityType="Self.Calisans" />
+    <EntitySet Name="Hizmetlers" EntityType="Self.Hizmetlers" />
+    <EntitySet Name="Musterilers" EntityType="Self.Musterilers" />
+    <EntitySet Name="Taleps" EntityType="Self.Taleps" />
+    <AssociationSet Name="FK_Talep_Hizmetler" Association="Self.FK_Talep_Hizmetler">
+      <End Role="Hizmetlers" EntitySet="Hizmetlers" />
+      <End Role="Taleps" EntitySet="Taleps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Talep_Musteriler" Association="Self.FK_Talep_Musteriler">
+      <End Role="Musterilers" EntitySet="Musterilers" />
+      <End Role="Taleps" EntitySet="Taleps" />
+    </AssociationSet>
+    <FunctionImport Name="Calisan_add">
+      <Parameter Name="kulAd" Mode="In" Type="String" />
+      <Parameter Name="sifre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Calisanlogin" ReturnType="Collection(ProcProjeDbModel.Calisanlogin_Result)">
+      <Parameter Name="kulAd" Mode="In" Type="String" />
+      <Parameter Name="sifre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="hizmet_Select" />
+    <FunctionImport Name="Hizmetler_add">
+      <Parameter Name="hizmetAdi" Mode="In" Type="String" />
+      <Parameter Name="hizmetTanimi" Mode="In" Type="String" />
+      <Parameter Name="hizmetFiyat" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Hizmetler_Del">
+      <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Hizmetler_up">
+      <Parameter Name="hizmetNo" Mode="In" Type="Int32" />
+      <Parameter Name="hizmetAdi" Mode="In" Type="String" />
+      <Parameter Name="hizmetTanimi" Mode="In" Type="String" />
+      <Parameter Name="hizmetFiyat" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Mus_Select" />
+    <FunctionImport Name="Musteri_add">
+      <Parameter Name="AdSoyad" Mode="In" Type="String" />
+      <Parameter Name="Telefon" Mode="In" Type="String" />
+      <Parameter Name="Mail" Mode="In" Type="String" />
+      <Parameter Name="Adres" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Musteriler_del">
+      <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Musteriler_up">
+      <Parameter Name="MusteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="AdSoyad" Mode="In" Type="String" />
+      <Parameter Name="Telefon" Mode="In" Type="String" />
+      <Parameter Name="Mail" Mode="In" Type="String" />
+      <Parameter Name="Adres" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CalisanKulAdKONTROL" ReturnType="Collection(ProcProjeDbModel.CalisanKulAdKONTROL_Result)">
+      <Parameter Name="kulAd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MusteriList" ReturnType="Collection(ProcProjeDbModel.MusteriList_Result)" />
+    <FunctionImport Name="Siparisler_add">
+      <Parameter Name="siparisAdi" Mode="In" Type="String" />
+      <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="adres" Mode="In" Type="String" />
+      <Parameter Name="aciklama" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Siparisler_del">
+      <Parameter Name="siparisNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Siparisler_up">
+      <Parameter Name="siparisNo" Mode="In" Type="Int32" />
+      <Parameter Name="siparisAdi" Mode="In" Type="String" />
+      <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="adres" Mode="In" Type="String" />
+      <Parameter Name="aciklama" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProcProjeDbModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProcProjeDbModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="HizmetlerList" ReturnType="Collection(ProcProjeDbModel.HizmetlerList_Result)" />
+    <FunctionImport Name="TalepAdd">
+      <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+      <Parameter Name="MusteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="MusteriNot" Mode="In" Type="String" />
+      <Parameter Name="TalepDurumu" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="TalepList" ReturnType="Collection(ProcProjeDbModel.TalepList_Result)" />
+    <FunctionImport Name="TalepDel">
+      <Parameter Name="TalepNo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="TalepUpdate">
+      <Parameter Name="TalepNo" Mode="In" Type="Int32" />
+      <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+      <Parameter Name="MusteriNo" Mode="In" Type="Int32" />
+      <Parameter Name="MusteriNot" Mode="In" Type="String" />
+      <Parameter Name="TalepDurumu" Mode="In" Type="Boolean" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Calisanlogin_Result">
+    <Property Type="Int32" Name="CalisanId" Nullable="false" />
+    <Property Type="String" Name="KulAd" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sifre" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="CalisanKulAdKONTROL_Result">
+    <Property Type="Int32" Name="CalisanId" Nullable="false" />
+    <Property Type="String" Name="KulAd" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sifre" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="MusteriList_Result">
+    <Property Type="Int32" Name="MusteriNo" Nullable="false" />
+    <Property Type="String" Name="AdSoyad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Telefon" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Adres" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="HizmetlerList_Result">
+    <Property Type="Int32" Name="HizmetNo" Nullable="false" />
+    <Property Type="String" Name="HizmetAdi" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="HizmetTanimi" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="HizmetFiyat" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="TalepList_Result">
+    <Property Type="Int32" Name="TalepNo" Nullable="false" />
+    <Property Type="Int32" Name="HizmetNo" Nullable="true" />
+    <Property Type="Int32" Name="MusteriNo" Nullable="true" />
+    <Property Type="String" Name="MusteriNot" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="TalepDurumu" Nullable="true" />
+  </ComplexType>
+</Schema>

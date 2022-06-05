@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProcProjeDbModelStoreContainer" CdmEntityContainer="ProcProjeDbEntities">
+    <EntitySetMapping Name="Calisans">
+      <EntityTypeMapping TypeName="ProcProjeDbModel.Calisans">
+        <MappingFragment StoreEntitySet="Calisans">
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+          <ScalarProperty Name="KulAd" ColumnName="KulAd" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hizmetlers">
+      <EntityTypeMapping TypeName="ProcProjeDbModel.Hizmetlers">
+        <MappingFragment StoreEntitySet="Hizmetlers">
+          <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+          <ScalarProperty Name="HizmetAdi" ColumnName="HizmetAdi" />
+          <ScalarProperty Name="HizmetTanimi" ColumnName="HizmetTanimi" />
+          <ScalarProperty Name="HizmetFiyat" ColumnName="HizmetFiyat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musterilers">
+      <EntityTypeMapping TypeName="ProcProjeDbModel.Musterilers">
+        <MappingFragment StoreEntitySet="Musterilers">
+          <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Taleps">
+      <EntityTypeMapping TypeName="ProcProjeDbModel.Taleps">
+        <MappingFragment StoreEntitySet="Taleps">
+          <ScalarProperty Name="TalepNo" ColumnName="TalepNo" />
+          <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+          <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+          <ScalarProperty Name="MusteriNot" ColumnName="MusteriNot" />
+          <ScalarProperty Name="TalepDurumu" ColumnName="TalepDurumu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Calisan_add" FunctionName="ProcProjeDbModel.Store.Calisan_add" />
+    <FunctionImportMapping FunctionImportName="Calisanlogin" FunctionName="ProcProjeDbModel.Store.Calisanlogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProcProjeDbModel.Calisanlogin_Result">
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+          <ScalarProperty Name="KulAd" ColumnName="KulAd" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Hizmetler_add" FunctionName="ProcProjeDbModel.Store.Hizmetler_add" />
+    <FunctionImportMapping FunctionImportName="Hizmetler_Del" FunctionName="ProcProjeDbModel.Store.Hizmetler_Del" />
+    <FunctionImportMapping FunctionImportName="Hizmetler_up" FunctionName="ProcProjeDbModel.Store.Hizmetler_up" />
+    <FunctionImportMapping FunctionImportName="Musteri_add" FunctionName="ProcProjeDbModel.Store.Musteri_add" />
+    <FunctionImportMapping FunctionImportName="Musteriler_del" FunctionName="ProcProjeDbModel.Store.Musteriler_del" />
+    <FunctionImportMapping FunctionImportName="Musteriler_up" FunctionName="ProcProjeDbModel.Store.Musteriler_up" />
+    <FunctionImportMapping FunctionImportName="CalisanKulAdKONTROL" FunctionName="ProcProjeDbModel.Store.CalisanKulAdKONTROL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProcProjeDbModel.CalisanKulAdKONTROL_Result">
+          <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+          <ScalarProperty Name="KulAd" ColumnName="KulAd" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MusteriList" FunctionName="ProcProjeDbModel.Store.MusteriList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProcProjeDbModel.MusteriList_Result">
+          <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProcProjeDbModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProcProjeDbModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProcProjeDbModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ProcProjeDbModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProcProjeDbModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ProcProjeDbModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProcProjeDbModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProcProjeDbModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProcProjeDbModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="HizmetlerList" FunctionName="ProcProjeDbModel.Store.HizmetlerList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProcProjeDbModel.HizmetlerList_Result">
+          <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+          <ScalarProperty Name="HizmetAdi" ColumnName="HizmetAdi" />
+          <ScalarProperty Name="HizmetTanimi" ColumnName="HizmetTanimi" />
+          <ScalarProperty Name="HizmetFiyat" ColumnName="HizmetFiyat" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TalepAdd" FunctionName="ProcProjeDbModel.Store.TalepAdd" />
+    <FunctionImportMapping FunctionImportName="TalepList" FunctionName="ProcProjeDbModel.Store.TalepList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProcProjeDbModel.TalepList_Result">
+          <ScalarProperty Name="TalepNo" ColumnName="TalepNo" />
+          <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+          <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+          <ScalarProperty Name="MusteriNot" ColumnName="MusteriNot" />
+          <ScalarProperty Name="TalepDurumu" ColumnName="TalepDurumu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TalepDel" FunctionName="ProcProjeDbModel.Store.TalepDel" />
+    <FunctionImportMapping FunctionImportName="TalepUpdate" FunctionName="ProcProjeDbModel.Store.TalepUpdate" />
+  </EntityContainerMapping>
+</Mapping>

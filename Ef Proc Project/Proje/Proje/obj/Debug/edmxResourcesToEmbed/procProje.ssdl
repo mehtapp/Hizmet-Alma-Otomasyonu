@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProcProjeDbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ProcProjeDbModelStoreContainer">
+    <EntitySet Name="Hizmetlers" EntityType="ProcProjeDbModel.Store.Hizmetlers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Musterilers" EntityType="ProcProjeDbModel.Store.Musterilers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Taleps" EntityType="ProcProjeDbModel.Store.Taleps" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="ProcProjeDbModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Talep_Hizmetler" Association="ProcProjeDbModel.Store.FK_Talep_Hizmetler">
+      <End Role="Hizmetler" EntitySet="Hizmetlers" />
+      <End Role="Talep" EntitySet="Taleps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Talep_Musteriler" Association="ProcProjeDbModel.Store.FK_Talep_Musteriler">
+      <End Role="Musteriler" EntitySet="Musterilers" />
+      <End Role="Talep" EntitySet="Taleps" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hizmetlers">
+    <Key>
+      <PropertyRef Name="HizmetNo" />
+    </Key>
+    <Property Name="HizmetNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HizmetAdi" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="HizmetTanimi" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="HizmetFiyat" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Musterilers">
+    <Key>
+      <PropertyRef Name="MusteriNo" />
+    </Key>
+    <Property Name="MusteriNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Telefon" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Mail" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Adres" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Sifre" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Taleps">
+    <Key>
+      <PropertyRef Name="TalepNo" />
+    </Key>
+    <Property Name="TalepNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HizmetNo" Type="int" Nullable="true" />
+    <Property Name="MusteriNo" Type="int" Nullable="true" />
+    <Property Name="MusteriNot" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_Talep_Hizmetler">
+    <End Role="Hizmetler" Type="ProcProjeDbModel.Store.Hizmetlers" Multiplicity="0..1" />
+    <End Role="Talep" Type="ProcProjeDbModel.Store.Taleps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hizmetler">
+        <PropertyRef Name="HizmetNo" />
+      </Principal>
+      <Dependent Role="Talep">
+        <PropertyRef Name="HizmetNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Talep_Musteriler">
+    <End Role="Musteriler" Type="ProcProjeDbModel.Store.Musterilers" Multiplicity="0..1" />
+    <End Role="Talep" Type="ProcProjeDbModel.Store.Taleps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteriler">
+        <PropertyRef Name="MusteriNo" />
+      </Principal>
+      <Dependent Role="Talep">
+        <PropertyRef Name="MusteriNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

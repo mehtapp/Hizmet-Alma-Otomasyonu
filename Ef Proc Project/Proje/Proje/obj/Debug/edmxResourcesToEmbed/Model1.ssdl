@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProcProjeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Calisans">
+    <Key>
+      <PropertyRef Name="CalisanId" />
+    </Key>
+    <Property Name="CalisanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KulAd" Type="varchar" MaxLength="50" />
+    <Property Name="Sifre" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hizmetlers">
+    <Key>
+      <PropertyRef Name="HizmetNo" />
+    </Key>
+    <Property Name="HizmetNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HizmetAdi" Type="varchar" MaxLength="50" />
+    <Property Name="HizmetTanimi" Type="varchar" MaxLength="50" />
+    <Property Name="HizmetFiyat" Type="int" />
+  </EntityType>
+  <EntityType Name="Musterilers">
+    <Key>
+      <PropertyRef Name="MusteriNo" />
+    </Key>
+    <Property Name="MusteriNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="varchar" MaxLength="50" />
+    <Property Name="Telefon" Type="varchar" MaxLength="50" />
+    <Property Name="Mail" Type="varchar" MaxLength="50" />
+    <Property Name="Adres" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Taleps">
+    <Key>
+      <PropertyRef Name="TalepNo" />
+    </Key>
+    <Property Name="TalepNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HizmetNo" Type="int" />
+    <Property Name="MusteriNo" Type="int" />
+    <Property Name="MusteriNot" Type="varchar" MaxLength="50" />
+    <Property Name="TalepDurumu" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Talep_Hizmetler">
+    <End Role="Hizmetlers" Type="Self.Hizmetlers" Multiplicity="0..1" />
+    <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hizmetlers">
+        <PropertyRef Name="HizmetNo" />
+      </Principal>
+      <Dependent Role="Taleps">
+        <PropertyRef Name="HizmetNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Talep_Musteriler">
+    <End Role="Musterilers" Type="Self.Musterilers" Multiplicity="0..1" />
+    <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musterilers">
+        <PropertyRef Name="MusteriNo" />
+      </Principal>
+      <Dependent Role="Taleps">
+        <PropertyRef Name="MusteriNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Calisan_add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="kulAd" Type="varchar" Mode="In" />
+    <Parameter Name="sifre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CalisanKulAdKONTROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="kulAd" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Calisanlogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="kulAd" Type="varchar" Mode="In" />
+    <Parameter Name="sifre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="Hizmetler_add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hizmetAdi" Type="varchar" Mode="In" />
+    <Parameter Name="hizmetTanimi" Type="varchar" Mode="In" />
+    <Parameter Name="hizmetFiyat" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Hizmetler_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HizmetNo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Hizmetler_up" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hizmetNo" Type="int" Mode="In" />
+    <Parameter Name="hizmetAdi" Type="varchar" Mode="In" />
+    <Parameter Name="hizmetTanimi" Type="varchar" Mode="In" />
+    <Parameter Name="hizmetFiyat" Type="int" Mode="In" />
+  </Function>
+  <Function Name="HizmetlerList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Musteri_add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AdSoyad" Type="varchar" Mode="In" />
+    <Parameter Name="Telefon" Type="varchar" Mode="In" />
+    <Parameter Name="Mail" Type="varchar" Mode="In" />
+    <Parameter Name="Adres" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Musteriler_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="musteriNo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Musteriler_up" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MusteriNo" Type="int" Mode="In" />
+    <Parameter Name="AdSoyad" Type="varchar" Mode="In" />
+    <Parameter Name="Telefon" Type="varchar" Mode="In" />
+    <Parameter Name="Mail" Type="varchar" Mode="In" />
+    <Parameter Name="Adres" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="MusteriList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="TalepAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="HizmetNo" Type="int" Mode="In" />
+    <Parameter Name="MusteriNo" Type="int" Mode="In" />
+    <Parameter Name="MusteriNot" Type="varchar" Mode="In" />
+    <Parameter Name="TalepDurumu" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="TalepDel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TalepNo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TalepList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="TalepUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TalepNo" Type="int" Mode="In" />
+    <Parameter Name="HizmetNo" Type="int" Mode="In" />
+    <Parameter Name="MusteriNo" Type="int" Mode="In" />
+    <Parameter Name="MusteriNot" Type="varchar" Mode="In" />
+    <Parameter Name="TalepDurumu" Type="bit" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProcProjeDbModelStoreContainer">
+    <EntitySet Name="Calisans" EntityType="Self.Calisans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hizmetlers" EntityType="Self.Hizmetlers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Musterilers" EntityType="Self.Musterilers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taleps" EntityType="Self.Taleps" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Talep_Hizmetler" Association="Self.FK_Talep_Hizmetler">
+      <End Role="Hizmetlers" EntitySet="Hizmetlers" />
+      <End Role="Taleps" EntitySet="Taleps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Talep_Musteriler" Association="Self.FK_Talep_Musteriler">
+      <End Role="Musterilers" EntitySet="Musterilers" />
+      <End Role="Taleps" EntitySet="Taleps" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

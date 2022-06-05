@@ -1,0 +1,38 @@
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\bin\Debug\Proje.exe.config
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\bin\Debug\Proje.exe
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\bin\Debug\Proje.pdb
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\bin\Debug\EntityFramework.dll
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\bin\Debug\EntityFramework.xml
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.csproj.AssemblyReference.cache
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.csproj.SuggestedBindingRedirects.cache
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.Form1.resources
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.Musteri.resources
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.Properties.Resources.resources
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.csproj.GenerateResource.cache
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.csproj.CoreCompileInputs.cache
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.csproj.CopyComplete
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.exe
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.pdb
+C:\Users\STUDENT2\Desktop\Mehtap\Proje\Proje\obj\Debug\Proje.Hizmet.resources
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.csproj.AssemblyReference.cache
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.csproj.SuggestedBindingRedirects.cache
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.Form1.resources
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.Hizmet.resources
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.Musteri.resources
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.Properties.Resources.resources
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.csproj.GenerateResource.cache
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.csproj.CoreCompileInputs.cache
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.exe
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.pdb
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\bin\Debug\Proje.exe.config
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\bin\Debug\Proje.exe
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\bin\Debug\Proje.pdb
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\bin\Debug\EntityFramework.dll
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\bin\Debug\EntityFramework.xml
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.Giris.resources
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.csproj.CopyComplete
+C:\Users\hvdem\Desktop\Projeler\5 Ef Proc Project\Proje\Proje\obj\Debug\Proje.Talep.resources

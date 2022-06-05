@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProcProjeDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Calisans">
+          <Key>
+            <PropertyRef Name="CalisanId" />
+          </Key>
+          <Property Name="CalisanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KulAd" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hizmetlers">
+          <Key>
+            <PropertyRef Name="HizmetNo" />
+          </Key>
+          <Property Name="HizmetNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HizmetAdi" Type="varchar" MaxLength="50" />
+          <Property Name="HizmetTanimi" Type="varchar" MaxLength="50" />
+          <Property Name="HizmetFiyat" Type="int" />
+        </EntityType>
+        <EntityType Name="Musterilers">
+          <Key>
+            <PropertyRef Name="MusteriNo" />
+          </Key>
+          <Property Name="MusteriNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdSoyad" Type="varchar" MaxLength="50" />
+          <Property Name="Telefon" Type="varchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Adres" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Taleps">
+          <Key>
+            <PropertyRef Name="TalepNo" />
+          </Key>
+          <Property Name="TalepNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HizmetNo" Type="int" />
+          <Property Name="MusteriNo" Type="int" />
+          <Property Name="MusteriNot" Type="varchar" MaxLength="50" />
+          <Property Name="TalepDurumu" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Talep_Hizmetler">
+          <End Role="Hizmetlers" Type="Self.Hizmetlers" Multiplicity="0..1" />
+          <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hizmetlers">
+              <PropertyRef Name="HizmetNo" />
+            </Principal>
+            <Dependent Role="Taleps">
+              <PropertyRef Name="HizmetNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Talep_Musteriler">
+          <End Role="Musterilers" Type="Self.Musterilers" Multiplicity="0..1" />
+          <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musterilers">
+              <PropertyRef Name="MusteriNo" />
+            </Principal>
+            <Dependent Role="Taleps">
+              <PropertyRef Name="MusteriNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Calisan_add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="kulAd" Type="varchar" Mode="In" />
+          <Parameter Name="sifre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CalisanKulAdKONTROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="kulAd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Calisanlogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="kulAd" Type="varchar" Mode="In" />
+          <Parameter Name="sifre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="Hizmetler_add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hizmetAdi" Type="varchar" Mode="In" />
+          <Parameter Name="hizmetTanimi" Type="varchar" Mode="In" />
+          <Parameter Name="hizmetFiyat" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Hizmetler_Del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HizmetNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Hizmetler_up" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hizmetNo" Type="int" Mode="In" />
+          <Parameter Name="hizmetAdi" Type="varchar" Mode="In" />
+          <Parameter Name="hizmetTanimi" Type="varchar" Mode="In" />
+          <Parameter Name="hizmetFiyat" Type="int" Mode="In" />
+        </Function>
+        <Function Name="HizmetlerList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Musteri_add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AdSoyad" Type="varchar" Mode="In" />
+          <Parameter Name="Telefon" Type="varchar" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+          <Parameter Name="Adres" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Musteriler_del" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="musteriNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Musteriler_up" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MusteriNo" Type="int" Mode="In" />
+          <Parameter Name="AdSoyad" Type="varchar" Mode="In" />
+          <Parameter Name="Telefon" Type="varchar" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+          <Parameter Name="Adres" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="MusteriList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TalepAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HizmetNo" Type="int" Mode="In" />
+          <Parameter Name="MusteriNo" Type="int" Mode="In" />
+          <Parameter Name="MusteriNot" Type="varchar" Mode="In" />
+          <Parameter Name="TalepDurumu" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="TalepDel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TalepNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TalepList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TalepUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TalepNo" Type="int" Mode="In" />
+          <Parameter Name="HizmetNo" Type="int" Mode="In" />
+          <Parameter Name="MusteriNo" Type="int" Mode="In" />
+          <Parameter Name="MusteriNot" Type="varchar" Mode="In" />
+          <Parameter Name="TalepDurumu" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProcProjeDbModelStoreContainer">
+          <EntitySet Name="Calisans" EntityType="Self.Calisans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hizmetlers" EntityType="Self.Hizmetlers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musterilers" EntityType="Self.Musterilers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Taleps" EntityType="Self.Taleps" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Talep_Hizmetler" Association="Self.FK_Talep_Hizmetler">
+            <End Role="Hizmetlers" EntitySet="Hizmetlers" />
+            <End Role="Taleps" EntitySet="Taleps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Talep_Musteriler" Association="Self.FK_Talep_Musteriler">
+            <End Role="Musterilers" EntitySet="Musterilers" />
+            <End Role="Taleps" EntitySet="Taleps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProcProjeDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Calisans">
+          <Key>
+            <PropertyRef Name="CalisanId" />
+          </Key>
+          <Property Name="CalisanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KulAd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Hizmetlers">
+          <Key>
+            <PropertyRef Name="HizmetNo" />
+          </Key>
+          <Property Name="HizmetNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HizmetAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HizmetTanimi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HizmetFiyat" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Musterilers">
+          <Key>
+            <PropertyRef Name="MusteriNo" />
+          </Key>
+          <Property Name="MusteriNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Taleps">
+          <Key>
+            <PropertyRef Name="TalepNo" />
+          </Key>
+          <Property Name="TalepNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HizmetNo" Type="Int32" />
+          <Property Name="MusteriNo" Type="Int32" />
+          <Property Name="MusteriNot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TalepDurumu" Type="Boolean" />
+          <NavigationProperty Name="Hizmetlers" Relationship="Self.FK_Talep_Hizmetler" FromRole="Taleps" ToRole="Hizmetlers" />
+          <NavigationProperty Name="Musterilers" Relationship="Self.FK_Talep_Musteriler" FromRole="Taleps" ToRole="Musterilers" />
+        </EntityType>
+        <Association Name="FK_Talep_Hizmetler">
+          <End Role="Hizmetlers" Type="Self.Hizmetlers" Multiplicity="0..1" />
+          <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hizmetlers">
+              <PropertyRef Name="HizmetNo" />
+            </Principal>
+            <Dependent Role="Taleps">
+              <PropertyRef Name="HizmetNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Talep_Musteriler">
+          <End Role="Musterilers" Type="Self.Musterilers" Multiplicity="0..1" />
+          <End Role="Taleps" Type="Self.Taleps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musterilers">
+              <PropertyRef Name="MusteriNo" />
+            </Principal>
+            <Dependent Role="Taleps">
+              <PropertyRef Name="MusteriNo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProcProjeDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Calisans" EntityType="Self.Calisans" />
+          <EntitySet Name="Hizmetlers" EntityType="Self.Hizmetlers" />
+          <EntitySet Name="Musterilers" EntityType="Self.Musterilers" />
+          <EntitySet Name="Taleps" EntityType="Self.Taleps" />
+          <AssociationSet Name="FK_Talep_Hizmetler" Association="Self.FK_Talep_Hizmetler">
+            <End Role="Hizmetlers" EntitySet="Hizmetlers" />
+            <End Role="Taleps" EntitySet="Taleps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Talep_Musteriler" Association="Self.FK_Talep_Musteriler">
+            <End Role="Musterilers" EntitySet="Musterilers" />
+            <End Role="Taleps" EntitySet="Taleps" />
+          </AssociationSet>
+          <FunctionImport Name="Calisan_add">
+            <Parameter Name="kulAd" Mode="In" Type="String" />
+            <Parameter Name="sifre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Calisanlogin" ReturnType="Collection(ProcProjeDbModel.Calisanlogin_Result)">
+            <Parameter Name="kulAd" Mode="In" Type="String" />
+            <Parameter Name="sifre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="hizmet_Select" />
+          <FunctionImport Name="Hizmetler_add">
+            <Parameter Name="hizmetAdi" Mode="In" Type="String" />
+            <Parameter Name="hizmetTanimi" Mode="In" Type="String" />
+            <Parameter Name="hizmetFiyat" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Hizmetler_Del">
+          <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Hizmetler_up">
+            <Parameter Name="hizmetNo" Mode="In" Type="Int32" />
+            <Parameter Name="hizmetAdi" Mode="In" Type="String" />
+            <Parameter Name="hizmetTanimi" Mode="In" Type="String" />
+            <Parameter Name="hizmetFiyat" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Mus_Select" />
+          <FunctionImport Name="Musteri_add">
+            <Parameter Name="AdSoyad" Mode="In" Type="String" />
+            <Parameter Name="Telefon" Mode="In" Type="String" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="Adres" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Musteriler_del">
+          <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Musteriler_up">
+            <Parameter Name="MusteriNo" Mode="In" Type="Int32" />
+            <Parameter Name="AdSoyad" Mode="In" Type="String" />
+            <Parameter Name="Telefon" Mode="In" Type="String" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="Adres" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CalisanKulAdKONTROL" ReturnType="Collection(ProcProjeDbModel.CalisanKulAdKONTROL_Result)">
+          <Parameter Name="kulAd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MusteriList" ReturnType="Collection(ProcProjeDbModel.MusteriList_Result)" />
+          <FunctionImport Name="Siparisler_add">
+            <Parameter Name="siparisAdi" Mode="In" Type="String" />
+            <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+            <Parameter Name="adres" Mode="In" Type="String" />
+            <Parameter Name="aciklama" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Siparisler_del">
+          <Parameter Name="siparisNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Siparisler_up">
+            <Parameter Name="siparisNo" Mode="In" Type="Int32" />
+            <Parameter Name="siparisAdi" Mode="In" Type="String" />
+            <Parameter Name="musteriNo" Mode="In" Type="Int32" />
+            <Parameter Name="adres" Mode="In" Type="String" />
+            <Parameter Name="aciklama" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProcProjeDbModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProcProjeDbModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="HizmetlerList" ReturnType="Collection(ProcProjeDbModel.HizmetlerList_Result)" />
+          <FunctionImport Name="TalepAdd">
+            <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+            <Parameter Name="MusteriNo" Mode="In" Type="Int32" />
+            <Parameter Name="MusteriNot" Mode="In" Type="String" />
+            <Parameter Name="TalepDurumu" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="TalepList" ReturnType="Collection(ProcProjeDbModel.TalepList_Result)" />
+          <FunctionImport Name="TalepDel">
+          <Parameter Name="TalepNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TalepUpdate">
+            <Parameter Name="TalepNo" Mode="In" Type="Int32" />
+            <Parameter Name="HizmetNo" Mode="In" Type="Int32" />
+            <Parameter Name="MusteriNo" Mode="In" Type="Int32" />
+            <Parameter Name="MusteriNot" Mode="In" Type="String" />
+            <Parameter Name="TalepDurumu" Mode="In" Type="Boolean" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Calisanlogin_Result">
+          <Property Type="Int32" Name="CalisanId" Nullable="false" />
+          <Property Type="String" Name="KulAd" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sifre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CalisanKulAdKONTROL_Result">
+          <Property Type="Int32" Name="CalisanId" Nullable="false" />
+          <Property Type="String" Name="KulAd" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sifre" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="MusteriList_Result">
+          <Property Type="Int32" Name="MusteriNo" Nullable="false" />
+          <Property Type="String" Name="AdSoyad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Telefon" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Adres" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="HizmetlerList_Result">
+          <Property Type="Int32" Name="HizmetNo" Nullable="false" />
+          <Property Type="String" Name="HizmetAdi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HizmetTanimi" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="HizmetFiyat" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="TalepList_Result">
+          <Property Type="Int32" Name="TalepNo" Nullable="false" />
+          <Property Type="Int32" Name="HizmetNo" Nullable="true" />
+          <Property Type="Int32" Name="MusteriNo" Nullable="true" />
+          <Property Type="String" Name="MusteriNot" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="TalepDurumu" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProcProjeDbModelStoreContainer" CdmEntityContainer="ProcProjeDbEntities">
+          <EntitySetMapping Name="Calisans">
+            <EntityTypeMapping TypeName="ProcProjeDbModel.Calisans">
+              <MappingFragment StoreEntitySet="Calisans">
+                <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+                <ScalarProperty Name="KulAd" ColumnName="KulAd" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hizmetlers">
+            <EntityTypeMapping TypeName="ProcProjeDbModel.Hizmetlers">
+              <MappingFragment StoreEntitySet="Hizmetlers">
+                <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+                <ScalarProperty Name="HizmetAdi" ColumnName="HizmetAdi" />
+                <ScalarProperty Name="HizmetTanimi" ColumnName="HizmetTanimi" />
+                <ScalarProperty Name="HizmetFiyat" ColumnName="HizmetFiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musterilers">
+            <EntityTypeMapping TypeName="ProcProjeDbModel.Musterilers">
+              <MappingFragment StoreEntitySet="Musterilers">
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taleps">
+            <EntityTypeMapping TypeName="ProcProjeDbModel.Taleps">
+              <MappingFragment StoreEntitySet="Taleps">
+                <ScalarProperty Name="TalepNo" ColumnName="TalepNo" />
+                <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="MusteriNot" ColumnName="MusteriNot" />
+                <ScalarProperty Name="TalepDurumu" ColumnName="TalepDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Calisan_add" FunctionName="ProcProjeDbModel.Store.Calisan_add" />
+          <FunctionImportMapping FunctionImportName="Calisanlogin" FunctionName="ProcProjeDbModel.Store.Calisanlogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcProjeDbModel.Calisanlogin_Result">
+                <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+                <ScalarProperty Name="KulAd" ColumnName="KulAd" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Hizmetler_add" FunctionName="ProcProjeDbModel.Store.Hizmetler_add" />
+          <FunctionImportMapping FunctionImportName="Hizmetler_Del" FunctionName="ProcProjeDbModel.Store.Hizmetler_Del" />
+          <FunctionImportMapping FunctionImportName="Hizmetler_up" FunctionName="ProcProjeDbModel.Store.Hizmetler_up" />
+          <FunctionImportMapping FunctionImportName="Musteri_add" FunctionName="ProcProjeDbModel.Store.Musteri_add" />
+          <FunctionImportMapping FunctionImportName="Musteriler_del" FunctionName="ProcProjeDbModel.Store.Musteriler_del" />
+          <FunctionImportMapping FunctionImportName="Musteriler_up" FunctionName="ProcProjeDbModel.Store.Musteriler_up" />
+          <FunctionImportMapping FunctionImportName="CalisanKulAdKONTROL" FunctionName="ProcProjeDbModel.Store.CalisanKulAdKONTROL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcProjeDbModel.CalisanKulAdKONTROL_Result">
+                <ScalarProperty Name="CalisanId" ColumnName="CalisanId" />
+                <ScalarProperty Name="KulAd" ColumnName="KulAd" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MusteriList" FunctionName="ProcProjeDbModel.Store.MusteriList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcProjeDbModel.MusteriList_Result">
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ProcProjeDbModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ProcProjeDbModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ProcProjeDbModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ProcProjeDbModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcProjeDbModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ProcProjeDbModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcProjeDbModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ProcProjeDbModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ProcProjeDbModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="HizmetlerList" FunctionName="ProcProjeDbModel.Store.HizmetlerList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcProjeDbModel.HizmetlerList_Result">
+                <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+                <ScalarProperty Name="HizmetAdi" ColumnName="HizmetAdi" />
+                <ScalarProperty Name="HizmetTanimi" ColumnName="HizmetTanimi" />
+                <ScalarProperty Name="HizmetFiyat" ColumnName="HizmetFiyat" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TalepAdd" FunctionName="ProcProjeDbModel.Store.TalepAdd" />
+          <FunctionImportMapping FunctionImportName="TalepList" FunctionName="ProcProjeDbModel.Store.TalepList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProcProjeDbModel.TalepList_Result">
+                <ScalarProperty Name="TalepNo" ColumnName="TalepNo" />
+                <ScalarProperty Name="HizmetNo" ColumnName="HizmetNo" />
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="MusteriNot" ColumnName="MusteriNot" />
+                <ScalarProperty Name="TalepDurumu" ColumnName="TalepDurumu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TalepDel" FunctionName="ProcProjeDbModel.Store.TalepDel" />
+          <FunctionImportMapping FunctionImportName="TalepUpdate" FunctionName="ProcProjeDbModel.Store.TalepUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
